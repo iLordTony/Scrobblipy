@@ -37,7 +37,6 @@ public class SpotipyReceiver extends BroadcastReceiver {
 
         trackLengthInSec = prefs.getTrackLengh();
 
-
         if (action.equals(METADATA_CHANGED)) {
             String artistName = intent.getStringExtra("artist");
             String albumName = intent.getStringExtra("album");
@@ -46,13 +45,10 @@ public class SpotipyReceiver extends BroadcastReceiver {
 
             msg = "Song: " + trackName +" from: " + albumName + " by: " + artistName + " length " + trackLengthInSec;
 
-            // Preferencias
-            prefs.setTrackLength(trackLengthInSec);
-            prefs.setTrackName(trackName);
-            prefs.setTrackArtist(artistName);
-            prefs.setTrackAlbum(albumName);
+            // Se meten todas las preferencias
+            setAllPreferences(trackLengthInSec, trackName, artistName, albumName);
 
-            startMainActivity(context);
+            // startMainActivity(context);
         } else if (action.equals(PLAYBACK_STATE_CHANGED)) {
             boolean playing = intent.getBooleanExtra("playing", false);
             positionInMs = intent.getIntExtra("playbackPosition", 0);
@@ -64,10 +60,9 @@ public class SpotipyReceiver extends BroadcastReceiver {
                 msg = "Stop";
                 prefs.setScrobblingState(false);
             }
-            startMainActivity(context);
+            // startMainActivity(context);
 
             msg += " Current position: " + positionInMs;
-
         }
 
         if((positionInMs >= (trackLengthInSec / 2)) && (trackLengthInSec > 0))
@@ -77,6 +72,7 @@ public class SpotipyReceiver extends BroadcastReceiver {
 
         Log.i(LOG_TAG, msg);
     }
+
     // Se ejecuta si se cambia de cancion o se hace pausa o start para actualizar MainActivity
     public void startMainActivity(Context context){
         if(ScrobblipyApplication.getActivityVisible()){
@@ -85,6 +81,14 @@ public class SpotipyReceiver extends BroadcastReceiver {
             intent2open.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             context.startActivity(intent2open);
         }
+    }
+
+    // Guardamos las preferencias
+    public void setAllPreferences(int trackLengthInSec, String trackName, String artistName, String albumName){
+        prefs.setTrackLength(trackLengthInSec);
+        prefs.setTrackName(trackName);
+        prefs.setTrackArtist(artistName);
+        prefs.setTrackAlbum(albumName);
     }
 
 }
