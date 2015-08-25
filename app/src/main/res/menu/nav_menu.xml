@@ -6,5 +6,43 @@
             android:checked="true"
             android:icon="@drawable/ic_home"
             android:title="@string/home_item" />
+        <item
+            android:id="@+id/nav_events"
+            android:checked="false"
+            android:icon="@drawable/ic_home"
+            android:title="@string/events_item" />
+
+        <item
+            android:id="@+id/nav_music"
+            android:checked="false"
+            android:icon="@drawable/ic_home"
+            android:title="@string/music_item" />
+
+        <item
+            android:id="@+id/data_nav"
+            android:title="@string/data_item">
+            <menu>
+                <item
+                    android:id="@+id/nav_scrobbler"
+                    android:checked="false"
+                    android:icon="@drawable/ic_home"
+                    android:title="@string/scrobbler_item" />
+                <item
+                    android:id="@+id/nav_top_tracks"
+                    android:checked="false"
+                    android:icon="@drawable/ic_home"
+                    android:title="@string/top_tracks_item" />
+                <item
+                    android:id="@+id/nav_top_artist"
+                    android:checked="false"
+                    android:icon="@drawable/ic_home"
+                    android:title="@string/top_artists_item" />
+                <item
+                    android:id="@+id/nav_top_albums"
+                    android:checked="false"
+                    android:icon="@drawable/ic_home"
+                    android:title="@string/top_albums_item" />
+            </menu>
+        </item>
     </group>
 </menu>

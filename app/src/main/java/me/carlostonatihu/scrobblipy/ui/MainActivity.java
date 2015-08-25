@@ -16,15 +16,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import me.carlostonatihu.scrobblipy.R;
+import me.carlostonatihu.scrobblipy.ui.fragment.HomeFragment;
+import me.carlostonatihu.scrobblipy.ui.fragment.HypedArtistsFragment;
 import me.carlostonatihu.scrobblipy.util.ScrobblipyApplication;
 import me.carlostonatihu.scrobblipy.util.ScrobblipyPreferences;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private TextView mTextSong;
     private ScrobblipyPreferences prefs;
     private DrawerLayout drawerLayout;
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private String drawerTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
-        mTextSong = (TextView) findViewById(R.id.text_song);
+        drawerTitle = getResources().getString(R.string.home_item);
+        if (savedInstanceState == null) {
+            selectItem(drawerTitle);
+        }
+
+        //mTextSong = (TextView) findViewById(R.id.text_song);
         prefs = new ScrobblipyPreferences(this);
     }
 
@@ -47,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ScrobblipyApplication.setActivityVisible(true);
-        if(prefs.getScrobblingState())
-            mTextSong.setText("Scrobbling " + prefs.getTrackName());
-        else
-            mTextSong.setText("Nada90");
+//        if(prefs.getScrobblingState())
+//            mTextSong.setText("Scrobbling " + prefs.getTrackName());
+//        else
+//            mTextSong.setText("Nada90");
 
         Log.d(LOG_TAG, "Valor " + ScrobblipyApplication.getActivityVisible());
 
@@ -79,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             ab.setHomeAsUpIndicator(R.drawable.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -92,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         menuItem.setChecked(true);
                         // Crear nuevo fragmento
                         String title = menuItem.getTitle().toString();
-                        drawerLayout.closeDrawers();
-                        setTitle(title);
+                        selectItem(title);
 
                         return true;
                     }
@@ -101,10 +108,20 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private void selectItem(String title) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.main_container, new HomeFragment()).commit();
+        drawerLayout.closeDrawers();
+        setTitle(title);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            return true;
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

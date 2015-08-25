@@ -2,7 +2,7 @@ package me.carlostonatihu.scrobblipy.ui.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +12,10 @@ import me.carlostonatihu.scrobblipy.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HypedArtistsFragment extends Fragment {
+public class EventsFragment extends Fragment {
 
 
-    public HypedArtistsFragment() {
+    public EventsFragment() {
         // Required empty public constructor
     }
 
@@ -24,8 +24,7 @@ public class HypedArtistsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_hyped_artists, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
 
