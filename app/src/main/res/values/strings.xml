@@ -8,4 +8,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scrobbler_count">777 scrobbers</string>
     <string name="username">ilordtony</string>
+    <string name="home_item">Home</string>
 </resources>
