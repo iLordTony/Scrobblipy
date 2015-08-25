@@ -11,8 +11,12 @@ public class ScrobblipyPreferences {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     public static final String PREF_KEY = "PREF_KEY";
+
     public static final String PREF_TRACK_LENGTH = "PREF_TRACK_LENGTH";
-    public static final String PREF_TRACK_DATA = "PREF_TRACK_DATA";
+    public static final String PREF_TRACK_NAME = "PREF_TRACK_NAME";
+    public static final String PREF_TRACK_ARTIST = "PREF_TRACK_ARTIST";
+    public static final String PREF_TRACK_ALBUM = "PREF_TRACK_ALBUM";
+
     public static final String PREF_SCROBBLING_STATE = "PREF_SCROBBLING_STATE";
 
     public ScrobblipyPreferences(Context context) {
@@ -38,12 +42,31 @@ public class ScrobblipyPreferences {
         return prefs.getBoolean(PREF_SCROBBLING_STATE, false);
     }
 
-    public void setTrackData(String trackData) {
-        editor.putString(PREF_TRACK_DATA, trackData);
+    public String getTrackName() {
+        return prefs.getString(PREF_TRACK_NAME, "");
+    }
+
+    public String getTrackArtist() {
+        return prefs.getString(PREF_TRACK_ARTIST, "");
+    }
+
+    public String getTrackAlbum() {
+        return prefs.getString(PREF_TRACK_ALBUM, "");
+    }
+
+    public void setTrackName(String trackName) {
+        editor.putString(PREF_TRACK_NAME, trackName);
         editor.apply();
     }
 
-    public String getTrackData() {
-        return prefs.getString(PREF_TRACK_DATA, "");
+    public void setTrackArtist(String trackArtist) {
+        editor.putString(PREF_TRACK_ARTIST, trackArtist);
+        editor.apply();
     }
+
+    public void setTrackAlbum(String trackAlbum) {
+        editor.putString(PREF_TRACK_ALBUM, trackAlbum);
+        editor.apply();
+    }
+
 }

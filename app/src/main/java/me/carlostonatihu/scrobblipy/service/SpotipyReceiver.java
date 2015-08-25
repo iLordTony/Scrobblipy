@@ -45,14 +45,14 @@ public class SpotipyReceiver extends BroadcastReceiver {
             trackLengthInSec = intent.getIntExtra("length", 0);
 
             msg = "Song: " + trackName +" from: " + albumName + " by: " + artistName + " length " + trackLengthInSec;
+
+            // Preferencias
             prefs.setTrackLength(trackLengthInSec);
-            prefs.setTrackData(msg);
-            if(ScrobblipyApplication.getActivityVisible()){
-                Intent intent2open = new Intent(context, MainActivity.class);
-                intent2open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent2open.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                context.startActivity(intent2open);
-            }
+            prefs.setTrackName(trackName);
+            prefs.setTrackArtist(artistName);
+            prefs.setTrackAlbum(albumName);
+
+            startMainActivity(context);
         } else if (action.equals(PLAYBACK_STATE_CHANGED)) {
             boolean playing = intent.getBooleanExtra("playing", false);
             positionInMs = intent.getIntExtra("playbackPosition", 0);
@@ -64,20 +64,27 @@ public class SpotipyReceiver extends BroadcastReceiver {
                 msg = "Stop";
                 prefs.setScrobblingState(false);
             }
+            startMainActivity(context);
 
             msg += " Current position: " + positionInMs;
 
-        } else if (action.equals(QUEUE_CHANGED)) {
-            msg = "Play queue has changed";
         }
 
-        Log.d(LOG_TAG, "Track length: " + trackLengthInSec);
         if((positionInMs >= (trackLengthInSec / 2)) && (trackLengthInSec > 0))
             Log.d(LOG_TAG, "Let's scrobbling");
         else
             Log.d(LOG_TAG, "Must be major or equals playing time");
 
         Log.i(LOG_TAG, msg);
+    }
+    // Se ejecuta si se cambia de cancion o se hace pausa o start para actualizar MainActivity
+    public void startMainActivity(Context context){
+        if(ScrobblipyApplication.getActivityVisible()){
+            Intent intent2open = new Intent(context, MainActivity.class);
+            intent2open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent2open.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            context.startActivity(intent2open);
+        }
     }
 
 }

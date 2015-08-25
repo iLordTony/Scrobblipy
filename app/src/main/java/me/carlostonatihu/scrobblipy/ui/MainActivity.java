@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         ScrobblipyApplication.setActivityVisible(true);
         if(prefs.getScrobblingState())
-            mTextSong.setText("Scrobbling " + prefs.getTrackData());
+            mTextSong.setText("Scrobbling " + prefs.getTrackName());
         else
             mTextSong.setText("Nada90");
 
