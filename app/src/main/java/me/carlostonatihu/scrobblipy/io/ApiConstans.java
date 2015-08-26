@@ -13,6 +13,14 @@ public class ApiConstans {
     public static final String PARAM_METHOD = "method";
     public static final String PARAM_FORMAT = "format";
 
+    // Remplazar el API_KEY por una nueva
+    public static final String VALUE_API_KEY = "c7d3b90bd4782bc434ddd647b698179a";
+
+    // Metodos
+    public static final String VALUE_HYPED_ARTISTS_METHOD = "chart.getHypedArtists";
     public static final String VALUE_JSON = "json";
-    public static final String VALUE_API_KEY = "";
+
+    // Peticiones
+    public static final String URL_HYPED_ARTISTS = "?" + PARAM_API_KEY + "=" + VALUE_API_KEY + "&" +
+            PARAM_METHOD + "=" + VALUE_HYPED_ARTISTS_METHOD + "&" + PARAM_FORMAT + "=" + VALUE_JSON;
 }

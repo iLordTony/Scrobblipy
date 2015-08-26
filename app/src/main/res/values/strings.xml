@@ -11,10 +11,10 @@
     <string name="home_item">Home</string>
     <string name="music_item">Music</string>
     <string name="events_item">Events</string>
-    <string name="scrobbles_item">Scrobber</string>
-    <string name="data_item">Mi informacion</string>
-    <string name="top_albums_item">Top Albums</string>
-    <string name="top_artists_item">Top Artists</string>
-    <string name="top_tracks_item">Top Tracks</string>
+    <string name="scrobbles_item">Scrobbler</string>
+    <string name="data_item">About Me</string>
+    <string name="top_albums_item">My Top Albums</string>
+    <string name="top_artists_item">My Top Artists</string>
+    <string name="top_tracks_item">My Top Tracks</string>
     <string name="default_artist_name">Artist name</string>
 </resources>
