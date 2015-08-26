@@ -16,4 +16,5 @@
     <string name="top_albums_item">Top Albums</string>
     <string name="top_artists_item">Top Artists</string>
     <string name="top_tracks_item">Top Tracks</string>
+    <string name="default_artist_name">Artist name</string>
 </resources>

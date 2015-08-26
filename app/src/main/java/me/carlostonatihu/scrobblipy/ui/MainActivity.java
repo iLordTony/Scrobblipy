@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.main_container, eventsFragmentFragment);
                 fragmentTransaction.commit();
                 return true;
+            case R.id.nav_music:
+                HypedArtistsFragment hypedArtistsFragment = new HypedArtistsFragment();
+                fragmentTransaction.replace(R.id.main_container, hypedArtistsFragment);
+                fragmentTransaction.commit();
+                return true;
             case R.id.nav_scrobbles:
                 ScrobblesFragment scrobblesFragmentFragmentFragment = new ScrobblesFragment();
                 fragmentTransaction.replace(R.id.main_container, scrobblesFragmentFragmentFragment);
