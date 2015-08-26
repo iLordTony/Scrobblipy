@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#393E42</color><!--393E42 Esto cambia el texto seleccionado-->
-    <color name="primary_dark">#FF37383C</color>
+    <color name="primary">#d84343</color><!--Esto cambia el texto seleccionado-->
+    <color name="primary_dark">#af4141</color>
     <color name="accent">#FF4646</color>
     <color name="accent_transparency">#cdff4646</color>
-    <color name="window_background">#3e454b</color> <!--394046-->
+    <color name="window_background">#41474b</color>
     <color name="text">#ffeeeeee</color>
     <color name="text_secondary">#FFB6B6B6</color>
     <color name="accent_transparency_dark">#cd4d1d1d</color>
-    <color name="primary_dark_transparency">#80040408</color>
+    <color name="placeholder_background">#373737</color>
 </resources>

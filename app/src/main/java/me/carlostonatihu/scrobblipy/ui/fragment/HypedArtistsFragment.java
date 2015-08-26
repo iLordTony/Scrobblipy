@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import me.carlostonatihu.scrobblipy.R;
 import me.carlostonatihu.scrobblipy.domain.Artist;
+import me.carlostonatihu.scrobblipy.ui.ItemOffsetDecoration;
 import me.carlostonatihu.scrobblipy.ui.adapter.HypedArtistsAdapter;
 
 /**
@@ -48,6 +49,7 @@ public class HypedArtistsFragment extends Fragment {
     private void setupRecyclerArtists () {
         mRecyclerHypedArtists.setLayoutManager(new GridLayoutManager(getActivity(), NUM_COLLUMS));
         mRecyclerHypedArtists.setAdapter(adapter);
+        //mRecyclerHypedArtists.addItemDecoration(new ItemOffsetDecoration(getActivity(), R.integer.offset));
     }
 
     private void setContent() {
