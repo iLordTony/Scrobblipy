@@ -23,10 +23,10 @@
             android:title="@string/data_item">
             <menu>
                 <item
-                    android:id="@+id/nav_scrobbler"
+                    android:id="@+id/nav_scrobbles"
                     android:checked="false"
                     android:icon="@drawable/ic_home"
-                    android:title="@string/scrobbler_item" />
+                    android:title="@string/scrobbles_item" />
                 <item
                     android:id="@+id/nav_top_tracks"
                     android:checked="false"

@@ -11,7 +11,7 @@
     <string name="home_item">Home</string>
     <string name="music_item">Music</string>
     <string name="events_item">Events</string>
-    <string name="scrobbler_item">Scrobber</string>
+    <string name="scrobbles_item">Scrobber</string>
     <string name="data_item">Mi informacion</string>
     <string name="top_albums_item">Top Albums</string>
     <string name="top_artists_item">Top Artists</string>

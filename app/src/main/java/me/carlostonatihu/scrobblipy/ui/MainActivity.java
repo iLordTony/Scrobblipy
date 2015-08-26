@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,10 +15,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import me.carlostonatihu.scrobblipy.R;
+import me.carlostonatihu.scrobblipy.ui.fragment.EventsFragment;
 import me.carlostonatihu.scrobblipy.ui.fragment.HomeFragment;
 import me.carlostonatihu.scrobblipy.ui.fragment.HypedArtistsFragment;
+import me.carlostonatihu.scrobblipy.ui.fragment.ScrobblesFragment;
+import me.carlostonatihu.scrobblipy.ui.fragment.TopAlbumsFragment;
+import me.carlostonatihu.scrobblipy.ui.fragment.TopArtistsFragment;
+import me.carlostonatihu.scrobblipy.ui.fragment.TopTracksFragment;
 import me.carlostonatihu.scrobblipy.util.ScrobblipyApplication;
 import me.carlostonatihu.scrobblipy.util.ScrobblipyPreferences;
 
@@ -27,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextSong;
     private ScrobblipyPreferences prefs;
     private DrawerLayout drawerLayout;
-    private String drawerTitle;
+    private int mNavItemId;
 
 
     @Override
@@ -43,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
-        drawerTitle = getResources().getString(R.string.home_item);
-        if (savedInstanceState == null) {
-            selectItem(drawerTitle);
+        if (null == savedInstanceState) {
+            mNavItemId = R.id.nav_home;
         }
+        selectItem(mNavItemId);
 
         //mTextSong = (TextView) findViewById(R.id.text_song);
         prefs = new ScrobblipyPreferences(this);
@@ -100,19 +107,53 @@ public class MainActivity extends AppCompatActivity {
                         menuItem.setChecked(true);
                         // Crear nuevo fragmento
                         String title = menuItem.getTitle().toString();
-                        selectItem(title);
-
-                        return true;
+                        mNavItemId = menuItem.getItemId();
+                        setTitle(title);
+                        drawerLayout.closeDrawers();
+                        return selectItem(mNavItemId);
                     }
                 }
         );
     }
 
-    private void selectItem(String title) {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_container, new HomeFragment()).commit();
-        drawerLayout.closeDrawers();
-        setTitle(title);
+    private boolean selectItem(int menuItem) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switch (menuItem) {
+            case R.id.nav_home:
+                HomeFragment mainFragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.main_container, mainFragment);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.nav_events:
+                EventsFragment eventsFragmentFragment = new EventsFragment();
+                fragmentTransaction.replace(R.id.main_container, eventsFragmentFragment);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.nav_scrobbles:
+                ScrobblesFragment scrobblesFragmentFragmentFragment = new ScrobblesFragment();
+                fragmentTransaction.replace(R.id.main_container, scrobblesFragmentFragmentFragment);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.nav_top_tracks:
+                TopTracksFragment hypedArtistsFragmentFragment = new TopTracksFragment();
+                fragmentTransaction.replace(R.id.main_container, hypedArtistsFragmentFragment);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.nav_top_artist:
+                TopArtistsFragment topArtistsFragment = new TopArtistsFragment();
+                fragmentTransaction.replace(R.id.main_container, topArtistsFragment);
+                fragmentTransaction.commit();
+                return true;
+            case R.id.nav_top_albums:
+                TopAlbumsFragment topAlbumsFragment = new TopAlbumsFragment();
+                fragmentTransaction.replace(R.id.main_container, topAlbumsFragment);
+                fragmentTransaction.commit();
+                return true;
+            default:
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
     }
 
     @Override

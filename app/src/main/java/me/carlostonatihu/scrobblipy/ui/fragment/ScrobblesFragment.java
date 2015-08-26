@@ -1,7 +1,6 @@
 package me.carlostonatihu.scrobblipy.ui.fragment;
 
-import android.app.Activity;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,17 +12,19 @@ import me.carlostonatihu.scrobblipy.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopArtistsFragment extends Fragment {
+public class ScrobblesFragment extends Fragment {
 
-    public TopArtistsFragment() {
+
+    public ScrobblesFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_artists, container, false);
+        return inflater.inflate(R.layout.fragment_scrobbles, container, false);
     }
 
 
