@@ -25,5 +25,4 @@
         android:text="@string/default_artist_name"
         android:background="@color/accent_transparency"/>
 
-
 </android.support.v7.widget.CardView>
