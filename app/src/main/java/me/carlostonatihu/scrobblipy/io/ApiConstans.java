@@ -20,7 +20,8 @@ public class ApiConstans {
     public static final String VALUE_HYPED_ARTISTS_METHOD = "chart.getHypedArtists";
     public static final String VALUE_JSON = "json";
 
-    // Peticiones
-    public static final String URL_HYPED_ARTISTS = "?" + PARAM_API_KEY + "=" + VALUE_API_KEY + "&" +
-            PARAM_METHOD + "=" + VALUE_HYPED_ARTISTS_METHOD + "&" + PARAM_FORMAT + "=" + VALUE_JSON;
+    // Peticionea
+    public static final String URL_HYPED_ARTISTS = PATH_VERSION + "/?" + PARAM_API_KEY + "=" +
+            VALUE_API_KEY + "&" + PARAM_METHOD + "=" + VALUE_HYPED_ARTISTS_METHOD + "&" +
+            PARAM_FORMAT + "=" + VALUE_JSON;
 }

@@ -13,13 +13,18 @@ import java.util.ArrayList;
 
 import me.carlostonatihu.scrobblipy.R;
 import me.carlostonatihu.scrobblipy.domain.Artist;
+import me.carlostonatihu.scrobblipy.io.LastFmApiAdapter;
+import me.carlostonatihu.scrobblipy.io.model.HypedArtistsResponse;
 import me.carlostonatihu.scrobblipy.ui.ItemOffsetDecoration;
 import me.carlostonatihu.scrobblipy.ui.adapter.HypedArtistsAdapter;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HypedArtistsFragment extends Fragment {
+public class HypedArtistsFragment extends Fragment implements Callback<HypedArtistsResponse> {
 
     private RecyclerView mRecyclerHypedArtists;
     private static final int NUM_COLLUMS = 2;
@@ -42,7 +47,6 @@ public class HypedArtistsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hyped_artists, container, false);
         mRecyclerHypedArtists = (RecyclerView) view.findViewById(R.id.recycler_hyped_artists);
         setupRecyclerArtists();
-        setContent();
         return view;
     }
 
@@ -52,14 +56,19 @@ public class HypedArtistsFragment extends Fragment {
         //mRecyclerHypedArtists.addItemDecoration(new ItemOffsetDecoration(getActivity(), R.integer.offset));
     }
 
-    private void setContent() {
-        ArrayList<Artist> artists = new ArrayList<>();
-
-        for (int i= 0; i < 10; i++) {
-            artists.add(new Artist("Artist " + 1));
-        }
-
-        adapter.addAll(artists);
+    @Override
+    public void onResume() {
+        super.onResume();
+        LastFmApiAdapter.getApiService().getHypedArtists(this);
     }
 
+    @Override
+    public void success(HypedArtistsResponse hypedArtistsResponse, Response response) {
+        adapter.addAll(hypedArtistsResponse.getArtists());
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        error.printStackTrace();
+    }
 }
