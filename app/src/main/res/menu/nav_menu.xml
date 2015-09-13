@@ -22,26 +22,28 @@
             android:id="@+id/data_nav"
             android:title="@string/data_item">
             <menu>
-                <item
-                    android:id="@+id/nav_scrobbles"
-                    android:checked="false"
-                    android:icon="@drawable/ic_home"
-                    android:title="@string/scrobbles_item" />
-                <item
-                    android:id="@+id/nav_top_tracks"
-                    android:checked="false"
-                    android:icon="@drawable/ic_home"
-                    android:title="@string/top_tracks_item" />
-                <item
-                    android:id="@+id/nav_top_artist"
-                    android:checked="false"
-                    android:icon="@drawable/ic_home"
-                    android:title="@string/top_artists_item" />
-                <item
-                    android:id="@+id/nav_top_albums"
-                    android:checked="false"
-                    android:icon="@drawable/ic_home"
-                    android:title="@string/top_albums_item" />
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_scrobbles"
+                        android:checked="false"
+                        android:icon="@drawable/ic_home"
+                        android:title="@string/scrobbles_item" />
+                    <item
+                        android:id="@+id/nav_top_tracks"
+                        android:checked="false"
+                        android:icon="@drawable/ic_home"
+                        android:title="@string/top_tracks_item" />
+                    <item
+                        android:id="@+id/nav_top_artist"
+                        android:checked="false"
+                        android:icon="@drawable/ic_home"
+                        android:title="@string/top_artists_item" />
+                    <item
+                        android:id="@+id/nav_top_albums"
+                        android:checked="false"
+                        android:icon="@drawable/ic_home"
+                        android:title="@string/top_albums_item" />
+                </group>
             </menu>
         </item>
     </group>
