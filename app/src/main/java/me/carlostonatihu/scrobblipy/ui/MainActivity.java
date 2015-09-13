@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
     private int mNavItemId;
 
 
@@ -37,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setToolbar();
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+                toolbar, R.string.openDrawer, R.string.closeDrawer);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
 
         if (null == savedInstanceState) {
             mNavItemId = R.id.nav_home;
@@ -70,14 +76,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            // Poner ícono del drawer toggle
-            ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -88,11 +88,13 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // Marcar item presionado
                         menuItem.setChecked(true);
+
+                        drawerLayout.closeDrawers();
                         // Crear nuevo fragmento
                         String title = menuItem.getTitle().toString();
                         mNavItemId = menuItem.getItemId();
                         setTitle(title);
-                        drawerLayout.closeDrawers();
+
                         return selectItem(mNavItemId);
                     }
                 }
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean selectItem(int menuItem) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
         switch (menuItem) {
             case R.id.nav_home:
                 HomeFragment mainFragment = new HomeFragment();
@@ -146,20 +149,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            getMenuInflater().inflate(R.menu.menu_main, menu);
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+
     }
 }

@@ -20,4 +20,6 @@
     <string name="item_top_tracks">Top Tracks</string>
 
     <string name="default_artist">Artist name</string>
+    <string name="openDrawer">Open</string>
+    <string name="closeDrawer">Close</string>
 </resources>
