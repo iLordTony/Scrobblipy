@@ -6,15 +6,18 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="scrobbler_count">777 scrobbers</string>
-    <string name="username">ilordtony</string>
-    <string name="home_item">Home</string>
-    <string name="music_item">Music</string>
-    <string name="events_item">Events</string>
-    <string name="scrobbles_item">Scrobbler</string>
-    <string name="data_item">About Me</string>
-    <string name="top_albums_item">My Top Albums</string>
-    <string name="top_artists_item">My Top Artists</string>
-    <string name="top_tracks_item">My Top Tracks</string>
-    <string name="default_artist_name">Artist name</string>
+    <string name="scrobbler_count">777 scrobblers</string>
+    <string name="username">capitanGalactico</string>
+
+    <!-- Estos son los dados del menu -->
+    <string name="item_home">Home</string>
+    <string name="item_music">Music</string>
+    <string name="item_events">Events</string>
+    <string name="item_scrobbles">Scrobbler</string>
+    <string name="item_data">About Me</string>
+    <string name="item_top_albums">Top Albums</string>
+    <string name="item_top_artists">Top Artists</string>
+    <string name="item_top_tracks">Top Tracks</string>
+
+    <string name="default_artist">Artist name</string>
 </resources>
