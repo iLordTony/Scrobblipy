@@ -13,7 +13,7 @@
     <string name="item_home">Home</string>
     <string name="item_music">Music</string>
     <string name="item_events">Events</string>
-    <string name="item_scrobbles">Scrobbler</string>
+    <string name="item_scrobbles">Scrobbles</string>
     <string name="item_data">About Me</string>
     <string name="item_top_albums">Top Albums</string>
     <string name="item_top_artists">Top Artists</string>
