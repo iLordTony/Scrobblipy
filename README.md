@@ -1,4 +1,4 @@
-# Scrobblipy
+# Scrobble Me
 This is a android application for scrobbling, at the moment just "work" with spotify.
 Also works with the Last.fm API.
 ## This project use:
